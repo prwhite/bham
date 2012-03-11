@@ -1,6 +1,10 @@
 
 
+default: test
 
-default: bham
+bham-test: bham.h
 
-bham: bham.h
+test: bham-test
+	./bham-test | diff -sq - bham-test-out.txt
+
+.PHONY: test

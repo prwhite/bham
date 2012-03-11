@@ -8,6 +8,8 @@ It's quite common with other techniques to end up with flickering when using int
 
 This is useful for a range of applications, but in my case I'm using it for PWM over SPI to control 8 solid state lasers!
 
+The basics of this implementation are partially inspired by this discussion: http://techref.massmind.org/techref/postbot.asp?by=thread&id=Bresenham+Algorithm+(was%3A+%22Re%3A+PIC+Vector+Math%22)&w=body&tgt=post
+
 ## Example Usage
 
 Runs 8 inputs to a form ready for sending to a shift register.

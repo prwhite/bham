@@ -65,3 +65,7 @@ There is also a JavaScript file, *bham.js*, that contains a generally identical 
 
 This is provided to be informative if nothing else.
 
+## License
+
+License is standard BSD license.  Please see bham.h for full notice.
+

@@ -1,6 +1,6 @@
 #**bham** - an Arduino library for Bresenham-based PWM control.
 
-This library provides two layers.  The lower layer using the *bham* class for determining the PWM control for one output, and the *bhams* class for managing a set of PWM outputs.
+This library provides two layers:  The lower layer using the *bham* class for determining the PWM control for one output, and the *bhams* class for managing a set of PWM outputs.
 
 The real advantage of this library over other forms of PWM is that it performs time division differently than bit-angle methods.
 
@@ -14,46 +14,37 @@ The basics of this implementation are partially inspired by this discussion: htt
 
 Runs 8 inputs to a form ready for sending to a shift register.
 
-At global scope.
+### At global scope:
 
-```
-const uint8_t NumTracks = 8;
-bhams< NumTracks > gBhams;
-```
+    const uint8_t NumTracks = 8;
+    bhams< NumTracks > gBhams;
 
-In 'setup'.
+###In _setup_:
 
-```
-gBhams.init ();
-```
+    gBhams.init ();
 
-In 'loop'.<br>
+### In _loop_:<br>
 This only needs to be run at 30-60hz for smooth animation.
 
-```
-uint8_t values[ NumTracks ];
+    uint8_t values[ NumTracks ];
+    
+    // Fill in values appropriately for each track.
+    
+    gBhams.set ( values );
 
-// Fill in values appropriately for each track.
-
-gBhams.set ( values );
-```
-
-In interrupt routine.<br>
+### In your interrupt routine:<br>
 Interrupt rate is determined by application, but should probably be a minimum of 240hz.
 I run this in the range of 4Khz with plenty of room left over for other processing.
-Output is up to 8 bits, each bit indicating the current PWM HIGH/LOW value for a corresponding output line.
+Output is up to 8 bits, each bit indicating the current PWM HIGH/LOW value for a corresponding 
+output line.
 
-```
-uint8_t out = gBhams.loop ();
-```
+    uint8_t out = gBhams.loop ();
 
 ## Unit Test
 
 You can verify the general behavior the library on a Unix-like host (not on Arduino) by doing the following:
 
-```
-make test
-```
+    make test
 
 Output should be:
 
@@ -61,7 +52,7 @@ Output should be:
 
 ## For fun
 
-There is also a JavaScript file, *bham.js*, that contains a generally identical Bresenham algorithm.  This file will work with **node.js** out-of-the box.
+There is also a JavaScript file, **bham.js**, that contains a generally identical Bresenham algorithm.  This file will work with **node.js** out-of-the box.
 
 This is provided to be informative if nothing else.
 
